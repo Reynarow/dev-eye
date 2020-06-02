@@ -1,0 +1,4 @@
+ {
+     "mongoURI": "mongodb+srv://Rexa:Mamarezajz1373@cluster0-mkjtv.mongodb.net/test?retryWrites=true&w=majority",
+     "jwtSecret": "mysecretkey"
+ }
