@@ -7,37 +7,41 @@ const { check, validationResult } = require('express-validator');
 const auth = require('../../middleware/auth');
 const User = require('../../models/User')
 
-// @auth route 
+// @auth route / send token (handle with middleware)
+
 router.get('/', auth, async (req, res) => {
     try {
-        const user = await User.findById(req.user.id).select('-password');
+        const user = await User.findById(req.user.id).select('-password')
         res.json(user)
     } catch (error) {
         console.log(error.message);
-        res.status(500).send('Server Error');
+        res.status(500).send('Server Error')
     }
 });
-// @route for Auth /get token
+
+
+
+//Route for auth/ get token
+
 router.post('/', [
-    check('email', 'لطفا ایمیل خود را به طور صحیح وارد کنید').isEmail(),
-    check('password', ' لطفا رمز عبور را وارد کنید  ').exists()
+    check('email', "لطفا ایمیل خود را به صورت صحیح وارد کنید").isEmail(),
+    check('password', "لطفا رمز عبور را وارد کنید").exists()
 ],
     async (req, res) => {
-        const errors = validationResult(req);
-        if (!errors.isEmpty()) {
-            res.status(400).json({ errors: errors.array() });
+        const error = validationResult(req);
+        if (!error.isEmpty()) {
+            res.status(400).json({ errors: error.array() })
         }
 
         const { email, password } = req.body;
-        try {
 
-            // if user exists
+        //user exist?
+        try {
             let user = await User.findOne({ email });
             if (!user) {
                 return res.status(400).json({ error: [{ msg: 'شناسه یا رمز عبور صحیح نیست' }] })
             }
-
-            const isMatch = await bcrypt.compare(password, user.password)
+            const isMatch = await bcrypt.compare(password, user.password);
             if (!isMatch) {
                 return res.status(400).json({ error: [{ msg: 'شناسه یا رمز عبور صحیح نیست' }] })
             }
@@ -52,19 +56,21 @@ router.post('/', [
                 config.get('jwtSecret'),
                 { expiresIn: 360000 },
                 (err, token) => {
-                    if (err) throw err;
+                    if (err) throw error;
                     res.json({ token });
                 }
-            );
-
+            )
         } catch (error) {
-            console.log(error.message);
+            console.log(error);
             res.status(500).send('Server Error')
         }
+    }
+
+
+)
 
 
 
 
-    });
 
 module.exports = router;
