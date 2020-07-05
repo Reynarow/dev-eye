@@ -8,7 +8,7 @@ module.exports = (req, res, next) => {
 
     //check if no token
     if (!token) {
-        return res.status(401).json({ msg: 'no token ,auth denied ' })
+        return res.status(401).json({ msg: 'توکن دریافت نشد' })
     }
 
     //verify token
@@ -19,6 +19,6 @@ module.exports = (req, res, next) => {
         req.user = decoded.user;
         next();
     } catch (error) {
-        res.status(401).json({ msg: 'token is not valid' });
+        res.status(401).json({ msg: 'توکن نامعتبر است' });
     }
 }

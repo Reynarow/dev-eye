@@ -1,4 +1,6 @@
  {
      "mongoURI": "mongodb+srv://Rexa:Mamarezajz1373@cluster0-mkjtv.mongodb.net/test?retryWrites=true&w=majority",
-     "jwtSecret": "mysecretkey"
+     "jwtSecret": "mysecretkey",
+     "githubClientId": "1cf6b97a8209f44e2dc5",
+     "githubSecret": "c9714ab35526eb8ace65a1ccda2774fb55625c73"
  }
