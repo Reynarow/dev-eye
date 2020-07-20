@@ -30,7 +30,7 @@ router.post('/', [
     async (req, res) => {
         const error = validationResult(req);
         if (!error.isEmpty()) {
-            res.status(400).json({ errors: error.array() })
+            return res.status(400).json({ errors: error.array() })
         }
 
         const { email, password } = req.body;
@@ -39,11 +39,13 @@ router.post('/', [
         try {
             let user = await User.findOne({ email });
             if (!user) {
-                return res.status(400).json({ error: [{ msg: 'شناسه یا رمز عبور صحیح نیست' }] })
+                return res.status(400).json({ errors: [{ msg: 'شناسه یا رمز عبور صحیح نیست' }] })
             }
+
             const isMatch = await bcrypt.compare(password, user.password);
+
             if (!isMatch) {
-                return res.status(400).json({ error: [{ msg: 'شناسه یا رمز عبور صحیح نیست' }] })
+                return res.status(400).json({ errors: [{ msg: 'شناسه یا رمز عبور صحیح نیست' }] })
             }
 
             const payload = {

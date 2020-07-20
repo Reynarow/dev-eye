@@ -10,9 +10,9 @@ const User = require('../../models/User');
 
 // @route fo register
 router.post('/', [
-    check('name', 'اسم را وارد کنید').not().isEmpty(),
-    check('email', 'لطفا ایمیل خود را به طور صحیح وارد کنید').isEmail(),
-    check('password', ' لطفا رمز عبور خود را در ۶ رقم وارد کنید  ').isLength({ min: 6 })
+    check('name', 'اسم را وارد کنید.').not().isEmpty(),
+    check('email', 'لطفا ایمیل خود را به طور صحیح وارد کنید.').isEmail(),
+    check('password', ' لطفا رمز عبور خود را در ۶ رقم وارد کنید.  ').isLength({ min: 6 })
 ],
     async (req, res) => {
         const errors = validationResult(req);
@@ -26,7 +26,7 @@ router.post('/', [
             // if user exists
             let user = await User.findOne({ email });
             if (user) {
-                res.status(400).json({ error: [{ msg: 'این ایمیل استفاده شده است' }] })
+                return res.status(400).json({ errors: [{ msg: 'این ایمیل استفاده شده است' }] })
             }
             //get users gravatar
             const avatar = gravatar.url(email, {
@@ -52,6 +52,7 @@ router.post('/', [
                     id: user.id
                 }
             }
+
             jwt.sign(
                 payload,
                 config.get('jwtSecret'),
@@ -61,6 +62,9 @@ router.post('/', [
                     res.json({ token });
                 }
             );
+
+
+
 
         } catch (error) {
             console.log(error.message);

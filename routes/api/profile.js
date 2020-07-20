@@ -7,7 +7,6 @@ const config = require('config');
 
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
-const { response } = require('express');
 
 // @route      Get api/profile/me
 // @descrip    get current users profile
@@ -127,13 +126,14 @@ router.get('/user/:user_id', async (req, res) => {
         const profile = await Profile.findOne({ user: req.params.user_id }).populate('user', ['name', 'avatar']);
 
         if (!profile) {
-            return res.status(400).json({ msg: 'There are no profile for this user' });
+            return res.status(400).json({ msg: 'پروفایلی برای این کاربر وجود ندارد' });
         }
         res.json(profile)
     } catch (error) {
         console.log(error.message);
         if (error.kind == 'ObjectId') {
-            return res.status(400).json({ msg: 'There are no profile for this user' });
+            return res.status(400).json({ msg: 'پروفایلی برای این کاربر وجود ندارد' });
+
         }
         res.status(500).send('Server Error');
     }
@@ -157,8 +157,8 @@ router.delete('/', auth, async (req, res) => {
 });
 
 
-// @route      DELETE api/education
-// @descrip   delete education, user & post
+// @route      ‌PUT api/education
+// @descrip   add education 
 //@acces       private
 
 
@@ -194,7 +194,7 @@ router.put('/education', [auth, [
 
 
 
-// @route      DELETE api/profile/education/:exp_id
+// @route      DELETE api/profile/education/:edu_id
 // @descrip   delete education from profile
 //@acces       private
 
@@ -206,10 +206,10 @@ router.delete('/education/:edu_id', auth, async (req, res) => {
         let profile = await Profile.findOne({ user: req.user.id });
         // Get the remove index
 
-        const eduId = profile.education.find(item => item.id === req.params.edu_id);
+        const hasEdu = profile.education.find(educate => educate.id === req.params.edu_id);
 
-        if (eduId) {
-            profile.education = profile.education.filter(item => item.id !== req.params.edu_id);
+        if (hasEdu) {
+            profile.education = profile.education.filter(educate => educate.id !== req.params.edu_id);
             await profile.save();
 
             res.json(profile);
@@ -324,15 +324,17 @@ router.get('/github/:username', (req, res) => {
             headers: { 'user-agent': 'node.js' }
         }
 
+
+
         request(options, (error, response, body) => {
             if (error) console.log(error);
 
             if (response.statusCode !== 200) {
-                return res.status(404).json({ msg: 'چنین شناسه ای در گیت هاب پیدا نشد' });
+                return res.status(404).json({ msg: "چنین شناسه ای در گیت هاب پیدا نشد" })
             }
 
             res.json(JSON.parse(body));
-        })
+        });
     } catch (error) {
         console.log(error.message);
         res.status(500).send('Server Error');
