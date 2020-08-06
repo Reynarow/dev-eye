@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+
+import Button from './Button.component';
 
 const HeaderTitle = () => (
   <div className='landing-inner'>
@@ -10,12 +11,12 @@ const HeaderTitle = () => (
       با ساخت پروفایل خود، با همکاران و دوستانتان آشنا شوید
     </p>
     <div className='buttons animate__animated  animate__fadeInUp'>
-      <Link to='/register' role='button' className='btn btn-primary'>
+      <Button link to='/register' color='primary'>
         ثبت نام
-      </Link>
-      <Link to='/login' role='button' className='btn btn-light '>
+      </Button>
+      <Button link to='/login' className='light'>
         ورود
-      </Link>
+      </Button>
     </div>
   </div>
 );

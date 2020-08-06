@@ -7,7 +7,6 @@ $danger-color: #dc3545;
 $success-color: #28a745;
 @mixin textBeautiful($firstColor, $secColor, $thirdColor) {
   background: conic-gradient($firstColor, $secColor, $thirdColor) fixed;
-
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -19,10 +18,10 @@ $success-color: #28a745;
 }
 
 body {
-  font-family: 'Vazir', sans-serif;
+  font-family: "Vazir", sans-serif;
   font-size: 1rem;
   line-height: 1.6;
-
+  scroll-behavior: smooth;
   background-color: #fff;
   min-height: 100%;
   color: #333;
@@ -80,6 +79,7 @@ body {
   flex-direction: column;
   position: relative;
   max-width: 1100px;
+
   border-radius: 4rem;
   margin: 10rem auto 1rem;
   overflow-x: hidden;
@@ -117,8 +117,8 @@ body {
 }
 
 .lead {
-  font-size: 1rem;
-  margin-bottom: 1.2rem;
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
 }
 
 .text-center {
@@ -312,6 +312,19 @@ body {
     background-color: $danger-color;
     color: #fff;
   }
+  &.alert-success {
+    background: $success-color;
+    color: #fff;
+  }
+  &.alert-dark {
+    background: $dark-color;
+    color: #fff;
+  }
+  &.alert-white {
+    background: #fff;
+    color: #333;
+    border: #ccc solid 1px;
+  }
 }
 
 .bg-light,
@@ -357,13 +370,13 @@ body {
     margin-right: 1rem;
     color: #888;
   }
-  & input[type='text'],
-  & input[type='email'],
-  & input[type='password'],
-  & input[type='date'],
+  & input[type="text"],
+  & input[type="email"],
+  & input[type="password"],
+  & input[type="date"],
   & select,
   & textarea {
-    font-family: 'Vazir', sans-serif !important;
+    font-family: "Vazir", sans-serif !important;
     display: flex;
     width: 100%;
     padding: 0.5rem 1rem;
@@ -373,12 +386,12 @@ body {
     outline: none;
   }
 
-  & input[type='email'],
-  & input[type='password'] {
+  & input[type="email"],
+  & input[type="password"] {
     direction: ltr;
   }
 
-  & input[type='password'] {
+  & input[type="password"] {
     letter-spacing: 0.3rem;
   }
   & input::placeholder {
@@ -386,37 +399,37 @@ body {
     direction: rtl;
   }
 
-  & input[type='submit'],
+  & input[type="submit"],
   button {
     font: inherit;
   }
 
-  &.social-input {
-    display: flex;
+  &-group.social-input {
+    display: inline-flex;
   }
 
-  &.social-input i {
+  &-group.social-input i {
     padding: 0.5rem;
     width: 4rem;
   }
 
-  &.social-input i.fa-twitter {
+  &-group.social-input i.fa-twitter {
     color: #38a1f3;
   }
 
-  &.social-input i.fa-facebook {
+  &-group.social-input i.fa-facebook {
     color: #3b5998;
   }
 
-  &.social-input i.fa-instagram {
-    color: #3f729b;
+  &-group.social-input i.fa-instagram {
+    color: #a534b4;
   }
 
-  &.social-input i.fa-youtube {
+  &-group.social-input i.fa-youtube {
     color: #c4302b;
   }
 
-  &.social-input i.fa-linkedin {
+  &-group.social-input i.fa-linkedin {
     color: #0077b5;
   }
 }
@@ -465,7 +478,7 @@ body {
         left: 0;
       }
       &::after {
-        content: '';
+        content: "";
         color: $light-color !important;
         transition: all 0.2s ease-in;
         background-color: $primary-color;
@@ -581,10 +594,10 @@ body {
 .profile-grid {
   display: grid;
   grid-template-areas:
-    'top top'
-    'about about'
-    'exp edu'
-    'github github';
+    "top top"
+    "about about"
+    "exp edu"
+    "github github";
   grid-gap: 1rem;
 }
 
@@ -722,8 +735,6 @@ body {
       }
       .form {
         .form-group {
-          display: flex;
-          flex-direction: column;
           align-content: center;
           align-items: center;
           justify-content: center;
@@ -842,11 +853,11 @@ body {
 
   .profile-grid {
     grid-template-areas:
-      'top'
-      'about'
-      'exp'
-      'edu'
-      'github';
+      "top"
+      "about"
+      "exp"
+      "edu"
+      "github";
   }
 
   .profile-about .skills {
@@ -877,8 +888,8 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   margin: auto;
   background-color: rgba(0, 0, 0, 0.596);
   opacity: 0.7;

@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { login } from '../../redux/auth/auth.action';
 //
 import PropTypes from 'prop-types';
+import Button from '../others/Button.component';
 
 const Login = ({ login, isAuthenicated, loading }) => {
   const [formData, setFormData] = useState({
@@ -69,9 +70,9 @@ const Login = ({ login, isAuthenicated, loading }) => {
                   title='رمز عبور'
                 />
               </div>
-              <button type='submit' className='btn btn-primary'>
+              <Button type='submit' color='primary'>
                 {loading ? <span className='spinner'></span> : 'ورود'}
-              </button>
+              </Button>
             </form>
             <p className='my-1'>
               حساب کاربری نداری؟ <Link to='/register'>ثبت نام</Link>
