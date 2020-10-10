@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 const Alert = ({ alert }) => {
+  window.scrollTo(0, 0)
   return <div className={`alert alert-${alert.alertType}`}>{alert.msg}</div>;
 };
 

@@ -4,6 +4,8 @@ import { setAlert } from '../../redux/alert/alert.action';
 import { register } from '../../redux/auth/auth.action';
 import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import FormInput from '../others/FormInput.component';
+import Button from '../others/Button.component';
 
 const Register = ({ setAlert, register, isAuthenicated }) => {
   useEffect(() => {
@@ -46,28 +48,30 @@ const Register = ({ setAlert, register, isAuthenicated }) => {
             </p>
             <form className='form' onSubmit={onHandleSubmit}>
               <div className='form-group'>
-                <input
+                <FormInput
                   type='text'
                   placeholder='نام خود را وارد کنید'
                   name='name'
                   value={name}
                   onChange={ondHandleChange}
+                  required
                 />
               </div>
               <div className='form-group'>
-                <input
+                <FormInput
                   type='email'
                   placeholder='ایمیل'
                   name='email'
                   value={email}
                   onChange={ondHandleChange}
+                  required
                 />
                 <small className='form-text'>
                   از ایمیل عکس دار استفاده کنید
                 </small>
               </div>
               <div className='form-group'>
-                <input
+                <FormInput
                   type='password'
                   placeholder='رمز عبور'
                   name='password'
@@ -78,7 +82,7 @@ const Register = ({ setAlert, register, isAuthenicated }) => {
                 />
               </div>
               <div className='form-group'>
-                <input
+                <FormInput
                   type='password'
                   placeholder='تکرار رمز عبور'
                   name='confirmPassword'
@@ -87,12 +91,11 @@ const Register = ({ setAlert, register, isAuthenicated }) => {
                   required
                 />
               </div>
-              <input
+              <Button
                 type='submit'
                 onSubmit={onHandleSubmit}
-                className='btn btn-primary'
-                value='ثبت نام'
-              />
+                color='primary'
+              > ثبت نام </Button>
             </form>
             <p className='my-1'>
               قبلا ثبت نام کردی؟ <Link to='/login'>ورود</Link>

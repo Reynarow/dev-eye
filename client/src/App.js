@@ -28,6 +28,13 @@ const CreateProfile = lazy(() =>
 const EditProfile = lazy(() =>
   import("./components/profile-froms/EditProfile.component")
 );
+const AddExperience = lazy(() =>
+  import("./components/profile-froms/AddExperience.component")
+);
+
+const AddEducation = lazy(() =>
+  import("./components/profile-froms/AddEducation.component")
+);
 
 localStorage.token && setAuthToken(localStorage.token);
 
@@ -48,6 +55,8 @@ const App = ({ alert, loadUser }) => {
             <PrivateRoute path="/dashboard" component={Dashboard} />
             <PrivateRoute path="/create-profile" component={CreateProfile} />
             <PrivateRoute path="/edit-profile" component={EditProfile} />
+            <PrivateRoute path="/add-experience" component={AddExperience} />
+            <PrivateRoute path="/add-education" component={AddEducation} />
             {/* TODO:make a notFound page <Route component={NotFound} /> */}
           </Switch>
         </Suspense>

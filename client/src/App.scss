@@ -301,7 +301,7 @@ body {
 .alert {
   z-index: 3222;
   padding: 0.8rem;
-  margin: 9rem auto -9rem;
+  margin: 5.5rem auto -9rem;
   opacity: 0.9;
   background: $light-color;
   color: #333;
@@ -437,7 +437,7 @@ body {
 .table th,
 .table td {
   padding: 1rem;
-  text-align: left;
+  text-align: right;
 }
 
 .table th {
@@ -739,11 +739,12 @@ body {
           align-items: center;
           justify-content: center;
         }
-        button {
+        button & a {
           display: flex;
           flex-direction: column;
           align-content: center;
           align-items: center;
+          width: 100%;
           justify-content: center;
           margin: auto !important;
         }
@@ -753,7 +754,7 @@ body {
   .alert {
     width: 80%;
     font-size: 0.8rem;
-    margin: 9rem auto -6rem;
+    margin: 0 auto -6rem;
   }
   .hide-sm {
     display: none;
