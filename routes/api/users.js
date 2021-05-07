@@ -8,16 +8,18 @@ const { check, validationResult } = require('express-validator');
 
 const User = require('../../models/User');
 
-// @route fo register
+// @route for register
+// @access  Public 
 router.post('/', [
     check('name', 'اسم را وارد کنید.').not().isEmpty(),
+    check('name', 'اسم را کامل وارد کنید.').isLength({min: 2}),
     check('email', 'لطفا ایمیل خود را به طور صحیح وارد کنید.').isEmail(),
     check('password', ' لطفا رمز عبور خود را در ۶ رقم وارد کنید.  ').isLength({ min: 6 })
 ],
     async (req, res) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
-            res.status(400).json({ errors: errors.array() });
+           return res.status(400).json({ errors: errors.array() });
         }
 
         const { name, email, password } = req.body;
