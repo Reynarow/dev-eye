@@ -14,7 +14,6 @@ router.get('/', auth, async (req, res) => {
         const user = await User.findById(req.user.id).select('-password')
         res.json(user)
     } catch (error) {
-        console.log(error.message);
         res.status(500).send('Server Error')
     }
 });
@@ -22,6 +21,7 @@ router.get('/', auth, async (req, res) => {
 
 
 //Route for auth/ get token
+//Login user
 
 router.post('/', [
     check('email', "لطفا ایمیل خود را به صورت صحیح وارد کنید").isEmail(),

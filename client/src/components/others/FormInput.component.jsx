@@ -25,7 +25,7 @@ const FormInput = ({ type, placeholder, name, value, onChange, required, ltr, ..
                 name={name} value={value} onChange={onChange}
                 onBlur={onBlurHandle}
                 style={{
-                    borderColor: `${style || passLenght ? 'red' : '#ccc'}`, direction: `${ltr && 'ltr'}`
+                    borderColor: `${style || passLenght ? 'red' : '#ccc'}`, direction: `${ltr ? 'ltr':'rtl'}`
                 }}
             />
             {style &&

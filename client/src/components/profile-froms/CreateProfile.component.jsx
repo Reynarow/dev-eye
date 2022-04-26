@@ -63,6 +63,7 @@ const CreateProfile = ({ createProfile, history }) => {
     control: (base, state) => ({
       ...base,
       borderRadius: state.menuIsOpen ? '1.2rem 1.2rem 0 0' : '10rem',
+      transition:null,
       width: '100%'
 
     }),
@@ -80,13 +81,13 @@ const CreateProfile = ({ createProfile, history }) => {
     })
   };
 
-  const onChangeSelect = selectedOption => setFormData({ ...formData, status: selectedOption.value })
+  const onChangeSelect = selectedOption =>  setFormData({ ...formData, status: selectedOption.value  })
+  console.log(status)
   const onChangeInputs = e => setFormData({ ...formData, [e.target.name]: e.target.value })
   const onSubmit = e => {
     e.preventDefault();
     createProfile(formData, history)
   }
-  console.log(formData)
   return (
     <div className='container'>
       <div className="container-group" >
@@ -99,9 +100,9 @@ const CreateProfile = ({ createProfile, history }) => {
         <small>*موارد مورد نیاز</small>
         <form className="form" onSubmit={onSubmit} >
           <div className="form-group">
-            <Select options={options} styles={customStyles} name='status' isClearable={true}
+            <Select options={options} styles={customStyles} name='status' 
               isRtl={true} placeholder='* تخصص خود را انتخاب کنید...'
-              value={options.find(option => option.value == status)}
+              value={options.find(option =>  option.value == status)}
               onChange={onChangeSelect} />
             <small className="form-text">وضعیت حرفه ‌ای خودت رو انتخاب کن</small>
           </div>

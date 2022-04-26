@@ -6,9 +6,12 @@ $light-color: #f4f4f4;
 $danger-color: #dc3545;
 $success-color: #28a745;
 @mixin textBeautiful($firstColor, $secColor, $thirdColor) {
-  background: conic-gradient($firstColor, $secColor, $thirdColor) fixed;
+  background: linear-gradient(to right, $firstColor, $secColor,$thirdColor) fixed;
+
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  
+  
 }
 
 * {
@@ -27,29 +30,9 @@ body {
   color: #333;
   direction: rtl !important;
 
-  .login {
-    overflow: auto;
-    min-height: 100vh;
-    background: rgb(0, 134, 246);
-    background: radial-gradient(
-      circle,
-      rgba(0, 134, 246, 1) 0%,
-      rgba(81, 230, 240, 1) 100%
-    );
-  }
-  .register {
-    overflow: auto;
-    min-height: 100vh;
-    background: rgb(81, 230, 240);
-    background: radial-gradient(
-      circle,
-      rgba(81, 230, 240, 1) 0%,
-      rgba(0, 38, 83, 1) 100%
-    );
-  }
+  
   &::-webkit-scrollbar {
-    background: #ccf6ed;
-    border-radius: 4px;
+    background: #646468;
     height: 8px;
     width: 8px;
   }
@@ -73,15 +56,34 @@ body {
     width: 100%;
   }
 }
+.login {
+  overflow: auto;
+  min-height: 100vh;
+  background: rgb(0, 134, 246);
+  background: radial-gradient(
+    circle,
+    rgba(0, 134, 246, 1) 0%,
+    rgba(81, 230, 240, 1) 100%
+  );
+}
+.register {
+  overflow: auto;
+  min-height: 100vh;
+  background: rgb(81, 230, 240);
+  background: radial-gradient(
+    circle,
+    rgb(65, 75, 219) 0%,
+    rgb(0, 250, 208) 100%
+  );
+}
 /* Utilities */
 .container {
   display: flex;
   flex-direction: column;
   position: relative;
-  max-width: 1100px;
-
+  max-width: 50rem;
   border-radius: 4rem;
-  margin: 10rem auto 1rem;
+  margin: 10rem auto ;
   overflow-x: hidden;
   padding: 1rem 3rem;
   background-color: rgba(253, 253, 253, 1);
@@ -299,9 +301,14 @@ body {
 }
 
 .alert {
-  z-index: 3222;
+  position: fixed;
+  top:10%;
+  left: 50%;
+  margin-top: 1rem;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 100;
   padding: 0.8rem;
-  margin: 5.5rem auto -9rem;
   opacity: 0.9;
   background: $light-color;
   color: #333;
@@ -545,7 +552,8 @@ body {
   .slider {
     display: flex;
     position: absolute;
-    transition: all 1s ease-in-out;
+    transition: all 1s ease-in-out; 
+    
   }
   .background-image {
     flex: 1;
@@ -573,7 +581,7 @@ body {
       @include textBeautiful(
         hsl(212, 100%, 60%),
         hsl(143, 100%, 60%),
-        hsl(300, 100%, 60%)
+        hsl(170, 100%, 45%)
       );
     }
   }
@@ -752,9 +760,11 @@ body {
     }
   }
   .alert {
-    width: 80%;
+    width: 50%;
     font-size: 0.8rem;
-    margin: 0 auto -6rem;
+    top:20vw;
+    padding: .5rem;
+    text-align: center;
   }
   .hide-sm {
     display: none;
@@ -777,9 +787,7 @@ body {
   .navbar {
     display: flex;
     text-align: center;
-  }
-
-  .navbar {
+  
     h1 {
       margin-bottom: 1rem;
       font-size: 1rem;

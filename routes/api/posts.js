@@ -68,7 +68,6 @@ router.get('/:id', auth, async (req, res) => {
         const post = await Post.findById(req.params.id);
         post ? res.json(post) : res.status(404).json({ msg: 'پستی یافت نشد' });
     } catch (error) {
-        console.log(error.message);
         if (error.kind === 'ObjectId') {
             return res.status(404).json({ msg: 'پستی یافت نشد' })
         }
@@ -96,7 +95,6 @@ router.delete("/:id", auth, async (req, res) => {
         await post.remove();
         res.json({ msg: 'پست حذف شد' });
     } catch (error) {
-        console.log(error);
         if (error.kind === "ObjectId") {
             return res.status(404).json({ msg: "پستی یافت نشد" })
         }
@@ -146,7 +144,6 @@ router.put('/unlike/:id', auth, async (req, res) => {
 
         res.json(post.likes);
     } catch (error) {
-        console.error(error.message);
         res.status(500).send("Server Error");
     }
 });

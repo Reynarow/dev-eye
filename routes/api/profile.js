@@ -9,8 +9,8 @@ const Profile = require("../../models/Profile");
 const User = require("../../models/User");
 
 // @route      Get api/profile/me
-// @descrip    get current users profile
-//@acces       private
+// @descrip    Get current users profile
+//@acces       Private
 router.get("/me", auth, async (req, res) => {
   try {
     const profile = await Profile.findOne({
@@ -23,21 +23,20 @@ router.get("/me", auth, async (req, res) => {
 
     res.json(profile);
   } catch (error) {
-    console.log(error.message);
-    res.status(500).send("server error");
+    res.status(500).send("Server error");
   }
 });
 
 // @route      Post api/profile
-// @descrip    create or update  users profile
-//@acces       private
+// @descrip    Create or update  users profile
+// @acces       Private
 
 router.post(
   "/",
   [
     auth,
     [
-      check("status", "وضعیت حرفه ای مورد نیاز است").not().isEmpty(),
+      check("status", "وضعیت حرفه  مورد نیاز است").not().isEmpty(),
       check("skills", "حداقل یک مهارت مورد نیاز است").not().isEmpty(),
     ],
   ],
@@ -109,23 +108,22 @@ router.post(
   }
 );
 
-// @route      Get api/profile
+// @route      GET api/profile
 // @descrip   get all profiles
-//@acces       public
+//@access       Public
 
 router.get("/", async (req, res) => {
   try {
     const profiles = await Profile.find().populate("user", ["name", "avatar"]);
     res.json(profiles);
   } catch (error) {
-    console.log(error.message);
     res.status(500).send("Server Error");
   }
 });
 
-// @route      Get api/profile/user/:user_id
+// @route      GET api/profile/user/:user_id
 // @descrip   get user profile by id
-//@acces       private
+//@access       private
 
 router.get("/user/:user_id", async (req, res) => {
   try {
@@ -140,7 +138,6 @@ router.get("/user/:user_id", async (req, res) => {
     }
     res.json(profile);
   } catch (error) {
-    console.log(error.message);
     if (error.kind == "ObjectId") {
       return res
         .status(400)
@@ -162,14 +159,13 @@ router.delete("/", auth, async (req, res) => {
     await User.findOneAndRemove({ _id: req.user.id });
     res.json({ msg: "کاربر حذف شد" });
   } catch (error) {
-    console.log(error.message);
     res.status(500).send("Server Error");
   }
 });
 
 // @route      ‌PUT api/education
-// @descrip   add education
-//@acces       private
+// @descrip    add education
+//@acces       Private
 
 router.put(
   "/education",
@@ -215,7 +211,6 @@ router.put(
       await profile.save();
       res.json(profile);
     } catch (error) {
-      console.error(error.message);
       res.status(500).send("Server Error");
     }
   }
@@ -301,15 +296,14 @@ router.put(
       await profile.save();
       res.json(profile);
     } catch (error) {
-      console.error(error.message);
       res.status(500).send("Server Error");
     }
   }
 );
 
 // @route      DELETE api/profile/experience/:exp_id
-// @descrip   delete experience from profile
-//@acces       private
+// @descrip    Delete experience from profile
+//@acces       Private
 
 router.delete("/experience/:exp_id", auth, async (req, res) => {
   try {
@@ -335,7 +329,6 @@ router.delete("/experience/:exp_id", auth, async (req, res) => {
 
     // profile.experience.splice(removeIndex, 1);
   } catch (error) {
-    console.error(error.message);
     res.status(500).send("Server Error");
   }
 });
@@ -368,7 +361,6 @@ router.get("/github/:username", (req, res) => {
       res.json(JSON.parse(body));
     });
   } catch (error) {
-    console.log(error.message);
     res.status(500).send("Server Error");
   }
 });

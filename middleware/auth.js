@@ -3,10 +3,10 @@ const config = require('config');
 
 
 module.exports = (req, res, next) => {
-    //get token from header
+    //Get token from header
     const token = req.header('x-auth-token');
 
-    //check if no token
+    //Check if no token
     if (!token) {
         return res.status(401).json({ errors: [{ msg: 'توکن دریافت نشد' }] })
     }

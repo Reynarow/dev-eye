@@ -27,24 +27,3 @@ module.exports = connectDB;
 
 
 
-
-
-
-// const connectDB = async () => {
-//     try {
-//         await mongoose.connect(db, {
-//             useCreateIndex: true,
-//             useNewUrlParser: true,
-//             useUnifiedTopology: true,
-//             useFindAndModify: false,
-//         })
-//         console.log('mongo db connected')
-//     } catch (err) {
-//         console.log(err.message);
-//         //exit proccess with failure
-//         process.exit(1);
-//     }
-// }
-
-
-

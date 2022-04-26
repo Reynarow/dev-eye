@@ -50,8 +50,8 @@ const App = ({ alert, loadUser }) => {
           {alert && <Alert />}
           <Switch>
             <Route exact path="/" component={HomePage} />
-            <Route path="/login" component={Login} />
-            <Route path="/register" component={Register} />
+            <Route exact path="/login" component={Login} />
+            <Route exact  path="/register" component={Register} />
             <PrivateRoute path="/dashboard" component={Dashboard} />
             <PrivateRoute path="/create-profile" component={CreateProfile} />
             <PrivateRoute path="/edit-profile" component={EditProfile} />

@@ -15,11 +15,8 @@ const Navbar = ({ auth: { isAuthenicated, loading }, logout }) => {
           <span className='hide-sm'>DevEye</span>
         </Link>
       </h1>
-      {
-        <Fragment>
-          {isAuthenicated ? <Authlink logout={logout} /> : <GuestLink />}
-        </Fragment>
-      }
+      
+          {isAuthenicated && !loading ? <Authlink logout={logout} /> : <GuestLink />}
     </nav>
   );
 };
