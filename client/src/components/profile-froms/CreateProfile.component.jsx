@@ -3,13 +3,13 @@ import PropTypes from 'prop-types'
 import Select from 'react-select';
 import Button from '../others/Button.component';
 //react-router
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 //redux 
 import { connect } from 'react-redux';
 import { createProfile } from '../../redux/profile/profile.action'
 
 
-const CreateProfile = ({ createProfile, history }) => {
+const CreateProfile = ({ createProfile, history , profile:{loading} }) => {
 
   const [formData, setFormData] = useState({
     company: '',
@@ -82,7 +82,6 @@ const CreateProfile = ({ createProfile, history }) => {
   };
 
   const onChangeSelect = selectedOption =>  setFormData({ ...formData, status: selectedOption.value  })
-  console.log(status)
   const onChangeInputs = e => setFormData({ ...formData, [e.target.name]: e.target.value })
   const onSubmit = e => {
     e.preventDefault();
@@ -179,7 +178,8 @@ const CreateProfile = ({ createProfile, history }) => {
             </div>
           </div>
           <div >
-            <Button type="submit" color="primary" myStyle='my-1' > ثبت</Button>
+            <Button type="submit" color="primary" myStyle='my-1' > 
+            {loading ? <span className='spinner'></span> : 'ثبت'}</Button>
             <Button link color="light" to="/dashboard">بازگشت</Button>
           </div>
         </form>
@@ -192,5 +192,8 @@ CreateProfile.propTypes = {
   createProfile: PropTypes.func.isRequired
 }
 
+const  mapStateToProps = state =>({
+  profile:state.profile
+})
 
-export default withRouter(connect(null, { createProfile })(CreateProfile))
+export default (connect(mapStateToProps, { createProfile })(CreateProfile))

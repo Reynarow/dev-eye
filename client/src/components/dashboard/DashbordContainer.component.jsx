@@ -1,10 +1,11 @@
 import React from 'react'
 import DashboardAction from './DashboardAction';
+import Experience from './Experience.component';
 import { Link } from 'react-router-dom'
 
 const DashbordContainer = ({ profile, user }) => {
     return (
-        <div className='container' style={{ minHeight: '30rem' }}>
+        <div className='container' style={{ minHeight: '30rem',marginTop:'8rem' }}>
             <h1 className='large text-primary' style={{ marginTop: '1rem' }}>حساب کاربری</h1>
             <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                 <p className='lead' style={{ marginTop: '1rem' }}>
@@ -13,11 +14,14 @@ const DashbordContainer = ({ profile, user }) => {
                 </p>
 
 
-                {profile !== null ? <DashboardAction /> : <>  <p> هنوز پروفایلت رو درست نکردی، لطفا تکمیلش کن</p>
-                    <Link to='/create-profile' className="btn btn-primary my-1"> ساخت پروفایل</Link> </>}
+                {profile !== null ?<> <DashboardAction /></>: <>  <p> هنوز پروفایلت رو درست نکردی، لطفا تکمیلش کن</p>
+                    <Link to='/create-profile' className="btn btn-primary my-1"> ساخت پروفایل</Link>
+                    
+                     </>}
             </div>
+            
         </div>
-    )
-}
+
+    )}
 
 export default DashbordContainer;

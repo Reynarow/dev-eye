@@ -15,7 +15,7 @@ const AddEducation = ({ addEducation, history }) => {
         degree: '',
         fieldofstudy: '',
         from: moment(),
-        to: '',
+        to: moment(),
         current: false,
         description: ''
     });
@@ -59,7 +59,7 @@ const AddEducation = ({ addEducation, history }) => {
                         <div className="form-group">
                             <h4>از تاریخ</h4>
                             {/* <input type="date" name="from" value={from} onChange={onChange} /> */}
-                            <DatePicker onChange={(value) => setFormData({ ...formData, [from]: value })} value={from} isGregorian={false} showTodayButton={false} timePicker={false} />
+                            <DatePicker onChange={(value) => setFormData({ ...formData,from: value })} value={from} isGregorian={false} showTodayButton={false} timePicker={false} />
                         </div>
                         <div className="form-group">
                             <p><input type="checkbox" name="current" checked={current} value={current}
@@ -71,8 +71,7 @@ const AddEducation = ({ addEducation, history }) => {
                         </div>
                         <div className="form-group">
                             <h4>تا تاریخ</h4>
-                            <input type="date" name="to" value={to} onChange={onChange}
-                                disabled={toDateDisabled ? 'disabled' : ''} />
+                            <DatePicker onChange={(value) => setFormData({ ...formData, to: value })} value={to} isGregorian={false} showTodayButton={false} timePicker={false} disabled={toDateDisabled? 'disabled':''} />
                         </div>
                         <div className="form-group">
                             <textarea

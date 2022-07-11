@@ -1,10 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const Button = ({ color, children, type, link, to, onClick, myStyle }) => {
+const Button = ({ color, children, type, link, to, onClick, myStyle,  }) => {
 
     return link ? (
-        <Link to={to} role='button' className={`btn btn-${color} ${myStyle ? myStyle : ''}`}>
+        <Link to={to} role='button' className={`btn btn-${color} ${myStyle ? myStyle : ''}` } >
             {children}
         </Link>
     ) :

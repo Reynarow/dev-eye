@@ -1,17 +1,20 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
+import DatePicker from 'react-datepicker2';
 import Button from '../others/Button.component';
 //
 import { connect } from 'react-redux'
 import { addExprerience } from '../../redux/profile/profile.action'
+import moment from 'moment-jalaali';
 
 const AddExperience = ({ addExprerience, history }) => {
+    
+    
     const [formData, setFormData] = useState({
         company: '',
         title: '',
         location: '',
-        from: '',
+        from: moment(),
         to: '',
         current: false,
         description: ''
@@ -20,10 +23,10 @@ const AddExperience = ({ addExprerience, history }) => {
     const [toDateDisabled, toggleDisabled] = useState(false);
     const { company, title, location, from, to, current, description } = formData;
 
+   
 
-
-
-    const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
+    const onChange = e => {setFormData({ ...formData, [e.target.name]: e.target.value })
+        };
     const onSubmit = e => {
         e.preventDefault();
         addExprerience(formData, history);
@@ -54,7 +57,7 @@ const AddExperience = ({ addExprerience, history }) => {
                         </div>
                         <div className="form-group">
                             <h4>از تاریخ</h4>
-                            <input type="date" name="from" value={from} onChange={onChange} />
+                            <DatePicker value={from} onChange={(value) =>{setFormData({...formData,from:value}) ;console.log(from)}}  isGregorian={false} showTodayButton={false} timePicker={false} />
                         </div>
                         <div className="form-group">
                             <p><input type="checkbox" name="current" checked={current} value={current}
@@ -62,7 +65,7 @@ const AddExperience = ({ addExprerience, history }) => {
                                     setFormData({ ...formData, current: !current });
                                     toggleDisabled(!toDateDisabled)
                                 }}
-                            /> شغل فعلی{' '}</p>
+                            /> &nbsp; شغل فعلی</p>
                         </div>
                         <div className="form-group">
                             <h4>تا تاریخ</h4>
@@ -97,4 +100,4 @@ AddExperience.propTypes = {
     addExprerience: PropTypes.func.isRequired,
 }
 
-export default connect(null, { addExprerience })(withRouter(AddExperience))
+export default connect(null, { addExprerience })((AddExperience))

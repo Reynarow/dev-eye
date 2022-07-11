@@ -104,7 +104,7 @@ const EditProfile = ({ profile: { profile, loading }, createProfile, history, ge
     const onSubmit = e => {
         e.preventDefault();
         createProfile(formData, history, true);
-        window.scrollTo(0, 0);
+        
     }
     return loading ? <Spinner /> :
         (
@@ -119,7 +119,7 @@ const EditProfile = ({ profile: { profile, loading }, createProfile, history, ge
                     <small>*موارد مورد نیاز</small>
                     <form className="form" onSubmit={onSubmit} >
                         <div className="form-group">
-                            <Select options={options} styles={customStyles} name='status' isClearable={true}
+                            <Select options={options} styles={customStyles} name='status' 
                                 isRtl={true} placeholder='* تخصص خود را انتخاب کنید...'
                                 value={options.find(option => option.value == status)}
                                 onChange={onChangeSelect} />
@@ -198,7 +198,7 @@ const EditProfile = ({ profile: { profile, loading }, createProfile, history, ge
                             </div>
                         </div>
                         <div >
-                            <Button type="submit" color="primary" myStyle='my-1' > ثبت</Button>
+                            <Button type="submit" color="primary" myStyle='my-1' >{loading ? <span className='spinner'></span> : 'ثبت'}</Button>
                             <Button link color="light" to="/dashboard">بازگشت</Button>
                         </div>
                     </form>
@@ -216,4 +216,4 @@ const mapStateToProps = (state) => ({
     profile: state.profile
 })
 
-export default withRouter(connect(mapStateToProps, { createProfile, getCurrentProfile })(EditProfile))
+export default (connect(mapStateToProps, { createProfile, getCurrentProfile })(EditProfile))

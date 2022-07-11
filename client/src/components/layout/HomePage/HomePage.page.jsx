@@ -1,15 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+
 import LandingPage from './Landing.component';
 import PropTypes from 'prop-types';
 
-const HomePage = ({isAuthenicated}) => {
- if(isAuthenicated) return <Redirect to ="/dashboard"/>
+const HomePage = () => {
+
   return(
   <div style={{ overflowX: 'hidden' }}>
     <LandingPage />
-    <div style={{ minHeight: '100vh' }}></div>
+    <div style={{ minHeight: '100vh' }}> <h1> خوش اومدی!</h1></div>
   </div>
   )};
 HomePage.prototype={

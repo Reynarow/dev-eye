@@ -11,6 +11,12 @@ const INITIAL_STATE = {
 const profileReducer = (state = INITIAL_STATE, action) => {
   const { type, payload } = action;
   switch (type) {
+    case profileActionTypes.START_PROFILE:
+      return{
+        ...state,
+        loading:true
+      }
+
     case profileActionTypes.GET_PROFILE:
     case profileActionTypes.UPDATE_PROFILE:
       return {
@@ -18,7 +24,12 @@ const profileReducer = (state = INITIAL_STATE, action) => {
         profile: payload,
         loading: false,
       };
-
+case profileActionTypes.GET_PROFILES:
+  return {
+    ...state,
+    profiles:payload,
+    loading:false
+  }
     case profileActionTypes.PROFILE_ERROR:
       return {
         ...state,
@@ -34,7 +45,14 @@ const profileReducer = (state = INITIAL_STATE, action) => {
       };
     default:
       return state;
+      case profileActionTypes.GET_REPOS:
+        return{
+          ...state,
+          repos:payload,
+          loading:false
+        }
   }
+ 
 };
 
 export default profileReducer;
